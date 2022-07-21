@@ -69,11 +69,6 @@ export class PlayersService implements PlayersInterface {
     return out;
   }
 
-  public payRent(from: PlayerInterface, to: PlayerInterface, building: BuildingInterface): void {
-    from.subtractMoney(building.getRentPrice());
-    to.addMoney(building.getRentPrice());
-  }
-
   public addBonus(to: PlayerInterface): void {
     if (!process.env.BONUS_MONEY) throw new Error("BONUS_MONEY environment not found.");
 
