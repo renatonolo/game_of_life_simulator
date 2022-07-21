@@ -23,8 +23,6 @@ export class PlayerService implements PlayerInterface {
 
   public subtractMoney(value: number): void {
     this.money -= value;
-
-    if (this.money < 0) this.money = 0;
   }
 
   public addMoney(value: number): void {
