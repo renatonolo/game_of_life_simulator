@@ -19,4 +19,14 @@ export class PlayerService implements PlayerInterface {
   getMoney(): number {
     return this.money;
   }
+
+  subtractMoney(value: number): void {
+    this.money -= value;
+
+    if (this.money < 0) this.money = 0;
+  }
+
+  addMoney(value: number): void {
+    this.money += value;
+  }
 }
