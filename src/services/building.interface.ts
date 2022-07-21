@@ -5,4 +5,5 @@ export interface BuildingInterface {
   getSellPrice(): number;
   getRentPrice(): number;
   getOwner(): PlayerInterface | undefined;
+  canBeBought(): boolean;
 }

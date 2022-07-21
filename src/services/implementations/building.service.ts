@@ -28,4 +28,8 @@ export class Building implements BuildingInterface {
   getOwner(): PlayerInterface | undefined {
     return this.owner;
   }
+
+  canBeBought(): boolean {
+    return !this.owner;
+  }
 }
