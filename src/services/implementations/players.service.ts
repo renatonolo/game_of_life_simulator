@@ -73,4 +73,12 @@ export class PlayersService implements PlayersInterface {
     from.subtractMoney(building.getRentPrice());
     to.addMoney(building.getRentPrice());
   }
+
+  addBonus(to: PlayerInterface): void {
+    if (!process.env.BONUS_MONEY) throw new Error("BONUS_MONEY environment not found.");
+
+    const bonusMoney = parseInt(process.env.BONUS_MONEY);
+
+    to.addMoney(bonusMoney);
+  }
 }
