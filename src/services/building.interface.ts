@@ -1,5 +1,8 @@
+import { PlayerInterface } from "./player.interface";
+
 export interface BuildingInterface {
+  getName(): string;
   getSellPrice(): number;
   getRentPrice(): number;
-  getName(): string;
+  getOwner(): PlayerInterface | undefined;
 }
