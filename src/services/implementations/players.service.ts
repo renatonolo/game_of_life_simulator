@@ -43,4 +43,14 @@ export class PlayersService implements PlayersInterface {
       }
     }
   }
+
+  public hasWinner(): boolean {
+    let winnerAmount = 0;
+
+    Array.from(this.players.values()).forEach(player => {
+      if (player.getMoney() > 0) winnerAmount++;
+    });
+
+    return winnerAmount == 1;
+  }
 }
