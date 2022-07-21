@@ -1,5 +1,7 @@
 import { PlayerType } from "../../enums/playerType.enum";
 import { NumberUtils } from "../../utils/number.utils";
+import { BuildingInterface } from "../building.interface";
+import { PlayerInterface } from "../player.interface";
 import { PlayersInterface } from "../players.interface";
 import { SpecificPlayerInterface } from "../specificPlayer.interface";
 import { CautiousPlayer } from "./cautiousPlayer.service";
@@ -65,5 +67,10 @@ export class PlayersService implements PlayersInterface {
     }
 
     return out;
+  }
+
+  payRent(from: PlayerInterface, to: PlayerInterface, building: BuildingInterface): void {
+    from.subtractMoney(building.getRentPrice());
+    to.addMoney(building.getRentPrice());
   }
 }
