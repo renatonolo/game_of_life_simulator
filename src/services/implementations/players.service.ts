@@ -1,4 +1,5 @@
 import { PlayerType } from "../../enums/playerType.enum";
+import { NumberUtils } from "../../utils/number.utils";
 import { PlayersInterface } from "../players.interface";
 import { SpecificPlayerInterface } from "../specificPlayer.interface";
 import { CautiousPlayer } from "./cautiousPlayer.service";
@@ -52,5 +53,17 @@ export class PlayersService implements PlayersInterface {
     });
 
     return winnerAmount == 1;
+  }
+
+  public takePlayersOrder(): PlayerType[] {
+    const out: PlayerType[] = [];
+    const order = NumberUtils.randomDefinedNumbers(this.playersNames.length);
+
+    for (let i = 0; i < this.playersNames.length; i++) {
+      const pos = order[i] - 1;
+      out.push(this.playersNames[pos]);
+    }
+
+    return out;
   }
 }
