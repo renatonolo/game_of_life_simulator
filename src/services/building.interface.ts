@@ -6,4 +6,5 @@ export interface BuildingInterface {
   getRentPrice(): number;
   getOwner(): PlayerInterface | undefined;
   canBeBought(): boolean;
+  addOwner(player: PlayerInterface): void;
 }

@@ -39,4 +39,9 @@ export class GameService implements GameServiceInterface {
     from.subtractMoney(building.getRentPrice());
     to.addMoney(building.getRentPrice());
   }
+
+  public buyBuilding(player: PlayerInterface, building: BuildingInterface): void {
+    player.subtractMoney(building.getSellPrice());
+    building.addOwner(player);
+  }
 }

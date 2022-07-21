@@ -7,4 +7,5 @@ export interface GameServiceInterface {
   getWinner(): PlayerInterface;
   getPlayers(): PlayerInterface[];
   payRent(from: PlayerInterface, to: PlayerInterface, building: BuildingInterface): void;
+  buyBuilding(player: PlayerInterface, building: BuildingInterface): void;
 }

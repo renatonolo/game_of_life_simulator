@@ -32,4 +32,10 @@ export class Building implements BuildingInterface {
   canBeBought(): boolean {
     return !this.owner;
   }
+
+  public addOwner(player: PlayerInterface): void {
+    if (this.owner) throw new Error("You can't buy this building. This building already has an owner.");
+
+    this.owner = player;
+  }
 }
