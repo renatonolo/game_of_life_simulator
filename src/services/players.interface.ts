@@ -1,3 +1,3 @@
 export interface PlayersInterface {
-  createPlayers(): boolean;
+  createPlayers(): void;
 }

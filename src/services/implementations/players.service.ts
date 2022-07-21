@@ -20,7 +20,7 @@ export class PlayersService implements PlayersInterface {
     ];
   }
 
-  public createPlayers(): boolean {
+  public createPlayers(): void {
     for (const name of this.playersNames) {
       switch(name) {
         case PlayerType.impulsive:
@@ -42,7 +42,5 @@ export class PlayersService implements PlayersInterface {
         default: throw new Error("Type of player not found.");
       }
     }
-
-    return true;
   }
 }
