@@ -1,3 +1,4 @@
 export interface PlayerInterface {
-  parse(): string;
+  getName(): string;
+  getMoney(): number;
 }
