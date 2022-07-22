@@ -76,4 +76,15 @@ export class PlayersService implements PlayersInterface {
 
     to.addMoney(bonusMoney);
   }
+
+  getWinner(): PlayerInterface {
+    const players = this.getPlayers();
+    return players[0];
+  }
+
+  getPlayers(): PlayerInterface[] {
+    return Array.from(this.players.values()).sort((a, b) => {
+      return b.getMoney() - a.getMoney();
+    });
+  }
 }

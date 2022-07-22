@@ -7,4 +7,6 @@ export interface PlayersInterface {
   hasWinner(): boolean;
   takePlayersOrder(): PlayerType[];
   addBonus(to: PlayerInterface): void;
+  getWinner(): PlayerInterface;
+  getPlayers(): PlayerInterface[];
 }

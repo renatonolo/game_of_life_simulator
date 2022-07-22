@@ -27,20 +27,12 @@ export class GameService implements GameServiceInterface {
     throw new Error("Method not implemented.");
   }
 
-  public getWinner(): PlayerInterface {
-    throw new Error("Method not implemented.");
-  }
-
-  public getPlayers(): PlayerInterface[] {
-    throw new Error("Method not implemented.");
-  }
-
-  public payRent(from: PlayerInterface, to: PlayerInterface, building: BuildingInterface): void {
+  private payRent(from: PlayerInterface, to: PlayerInterface, building: BuildingInterface): void {
     from.subtractMoney(building.getRentPrice());
     to.addMoney(building.getRentPrice());
   }
 
-  public buyBuilding(player: PlayerInterface, building: BuildingInterface): void {
+  private buyBuilding(player: PlayerInterface, building: BuildingInterface): void {
     player.subtractMoney(building.getSellPrice());
     building.addOwner(player);
   }
