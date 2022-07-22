@@ -4,9 +4,6 @@ import dotenv from "dotenv";
 import { GameController } from "./controllers/game/implementations/game.controller";
 import { GameControllerInterface } from "./controllers/game/game.interface";
 
-// Routes
-
-
 dotenv.config();
 
 const app = express();
