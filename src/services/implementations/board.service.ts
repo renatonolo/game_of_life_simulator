@@ -1,14 +1,19 @@
+import { PlayerType } from "../../enums/playerType.enum";
+import { LogUtils } from "../../utils/log.utils";
 import { NumberUtils } from "../../utils/number.utils";
 import { BoardInterface } from "../board.interface";
 import { BuildingInterface } from "../building.interface";
+import { PlayerInterface } from "../player.interface";
 import { Building } from "./building.service";
 
 export class BoardServices implements BoardInterface {
   private static instance: BoardInterface;
   private buildings: BuildingInterface[];
+  private playerPosition: Map<string, number>;
 
   constructor() {
     this.buildings = [];
+    this.playerPosition = new Map();
   }
 
   public static getInstance(): BoardInterface {
@@ -17,7 +22,7 @@ export class BoardServices implements BoardInterface {
     return this.instance;
   }
 
-  createBuildings(): void {
+  public createBuildings(): void {
     if (this.buildings.length > 0) return;
 
     if (!process.env.BUILDINGS_AMOUNT) throw new Error("BUILDINGS_AMOUNT environment not found.");
@@ -49,9 +54,29 @@ export class BoardServices implements BoardInterface {
     });
   }
 
+  public walk(player: PlayerInterface, steps: number): void {
+    const playerPosition = this.getPlayerPosition(player);
+    let newPlayerPosition = playerPosition + steps;
+
+    if (newPlayerPosition > this.buildings.length - 1) {
+      const diff = this.buildings.length - playerPosition - 1;
+      newPlayerPosition = steps - diff - 1;
+    }
+
+    this.playerPosition.set(player.getName(), newPlayerPosition);
+  }
+
   public getBuildingAtPlayerPosition(player: PlayerInterface): BuildingInterface {
     const playerPosition = this.getPlayerPosition(player);
     return this.buildings[playerPosition];
+  }
+
+  private getPlayerPosition(player: PlayerInterface): number {
+    const pos = this.playerPosition.get(player.getName());
+
+    if (pos == undefined) throw new Error(`Player ${player.getName()} has not a position.`);
+
+    return pos;
   }
 
   private printBuildings(): void {
