@@ -39,5 +39,21 @@ export class BoardServices implements BoardInterface {
 
       this.buildings.push(building);
     }
+
+    this.printBuildings();
+  }
+
+  private printBuildings(): void {
+    LogUtils.print("====================== Buildings =========================");
+
+    for (const building of this.buildings) {
+      LogUtils.print(`Building ${building.getName()}`);
+      LogUtils.print(`Sell: $ ${building.getSellPrice()},00`);
+      LogUtils.print(`Rent: $ ${building.getRentPrice()},00`);
+      LogUtils.print(`Owner: ${building.getOwner() ? building.getOwner() : 'Nobody'}`);
+      LogUtils.print("\n");
+    }
+
+    LogUtils.print("========================================================\n");
   }
 }
