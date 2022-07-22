@@ -49,6 +49,11 @@ export class BoardServices implements BoardInterface {
     });
   }
 
+  public getBuildingAtPlayerPosition(player: PlayerInterface): BuildingInterface {
+    const playerPosition = this.getPlayerPosition(player);
+    return this.buildings[playerPosition];
+  }
+
   private printBuildings(): void {
     LogUtils.print("====================== Buildings =========================");
 
