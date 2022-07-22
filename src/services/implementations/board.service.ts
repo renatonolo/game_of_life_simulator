@@ -43,6 +43,12 @@ export class BoardServices implements BoardInterface {
     this.printBuildings();
   }
 
+  public putPlayers(players: PlayerInterface[]): void {
+    players.forEach(player => {
+      this.playerPosition.set(player.getName(), -1);
+    });
+  }
+
   private printBuildings(): void {
     LogUtils.print("====================== Buildings =========================");
 
