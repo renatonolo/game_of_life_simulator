@@ -1,6 +1,7 @@
 import { PlayerType } from "../enums/playerType.enum";
 import { BuildingInterface } from "./building.interface";
 import { PlayerInterface } from "./player.interface";
+import { SpecificPlayerInterface } from "./specificPlayer.interface";
 
 export interface PlayersInterface {
   createPlayers(): void;
@@ -8,5 +9,5 @@ export interface PlayersInterface {
   takePlayersOrder(): PlayerType[];
   addBonus(to: PlayerInterface): void;
   getWinner(): PlayerInterface;
-  getPlayers(): PlayerInterface[];
+  getPlayers(): SpecificPlayerInterface[];
 }

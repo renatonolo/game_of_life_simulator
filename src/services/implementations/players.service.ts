@@ -82,7 +82,7 @@ export class PlayersService implements PlayersInterface {
     return players[0];
   }
 
-  getPlayers(): PlayerInterface[] {
+  getPlayers(): SpecificPlayerInterface[] {
     return Array.from(this.players.values()).sort((a, b) => {
       return b.getMoney() - a.getMoney();
     });
