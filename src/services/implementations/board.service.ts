@@ -7,7 +7,6 @@ import { PlayerInterface } from "../player.interface";
 import { Building } from "./building.service";
 
 export class BoardServices implements BoardInterface {
-  private static instance: BoardInterface;
   private buildings: BuildingInterface[];
   private playerPosition: Map<string, number>;
 
@@ -16,15 +15,7 @@ export class BoardServices implements BoardInterface {
     this.playerPosition = new Map();
   }
 
-  public static getInstance(): BoardInterface {
-    if (!this.instance) this.instance = new BoardServices();
-
-    return this.instance;
-  }
-
   public createBuildings(): void {
-    if (this.buildings.length > 0) return;
-
     if (!process.env.BUILDINGS_AMOUNT) throw new Error("BUILDINGS_AMOUNT environment not found.");
     if (!process.env.SELL_PRICE_MIN) throw new Error("SELL_PRICE_MIN environment not found.");
     if (!process.env.SELL_PRICE_MAX) throw new Error("SELL_PRICE_MAX environment not found.");

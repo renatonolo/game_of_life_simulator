@@ -12,7 +12,7 @@ export class GameController implements GameControllerInterface {
     const gameService: GameServiceInterface = new GameService();
 
     gameService.start();
-    // gameService.simulate();
+    gameService.simulate();
 
     // const winner = gameService.getWinner();
     // const players = gameService.getPlayers();
