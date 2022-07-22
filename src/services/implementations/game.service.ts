@@ -72,6 +72,16 @@ export class GameService implements GameServiceInterface {
 
       round++;
     }
+
+    this.printWinner();
+  }
+
+  public getPlayers(): PlayerInterface[] {
+    return this.playersService.getPlayers();
+  }
+
+  public getWinner(): PlayerInterface {
+    return this.playersService.getWinner();
   }
 
   private payRent(from: PlayerInterface, to: PlayerInterface, building: BuildingInterface): void {
@@ -87,5 +97,17 @@ export class GameService implements GameServiceInterface {
     building.addOwner(player);
 
     LogUtils.print(`Player ${player.getName()} bought the building ${building.getName()}.`);
+  }
+
+  private printWinner() {
+    const players = this.playersService.getPlayers();
+
+    LogUtils.print("Game over. We have a winner!\n");
+
+    for (const player of players) {
+      LogUtils.print(`Player ${player.getName()} finished with $ ${player.getMoney()},00`);
+    }
+
+    LogUtils.print(`\nCongratulations player ${players[0].getName()}!`);
   }
 }

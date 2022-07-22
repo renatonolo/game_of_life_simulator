@@ -14,12 +14,12 @@ export class GameController implements GameControllerInterface {
     gameService.start();
     gameService.simulate();
 
-    // const winner = gameService.getWinner();
-    // const players = gameService.getPlayers();
+    const winner = gameService.getWinner();
+    const players = gameService.getPlayers();
 
-    // res.send({
-    //   vencedor: winner.parse(),
-    //   jogadores: players.map(p => p.parse),
-    // });
+    res.send({
+      vencedor: winner.getName(),
+      jogadores: players.map(p => p.getName()),
+    });
   }
 }
