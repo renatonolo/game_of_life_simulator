@@ -13,14 +13,20 @@ export class GameService implements GameServiceInterface {
   private boardService: BoardInterface;
   private diceService: DiceService;
   private limitOfRounds: number;
+  private roundBonus: number;
+  private buildingsAmount: number;
 
   constructor() {
     if (!process.env.LIMIT_OF_ROUNDS) throw new Error("LIMIT_OF_ROUNDS environment not found.");
+    if (!process.env.ROUND_BONUS) throw new Error("ROUND_BONUS environment not found.");
+    if (!process.env.BUILDINGS_AMOUNT) throw new Error("BUILDINGS_AMOUNT environment not found.");
 
     this.playersService = new PlayersService();
     this.boardService = new BoardServices();
     this.diceService = new DiceService();
     this.limitOfRounds = parseInt(process.env.LIMIT_OF_ROUNDS);
+    this.roundBonus = parseInt(process.env.ROUND_BONUS);
+    this.buildingsAmount = parseInt(process.env.BUILDINGS_AMOUNT);
   }
 
   public start(): void {
@@ -38,6 +44,10 @@ export class GameService implements GameServiceInterface {
     while(round < this.limitOfRounds && !this.playersService.hasWinner()) {
       for (const player of players) {
         const dice = this.diceService.roll();
+
+        if (this.playerCanReceiveBonus(player, dice)) {
+          this.addBonusToPLayer(player);
+        }
 
         this.boardService.walk(player, dice);
 
@@ -97,6 +107,16 @@ export class GameService implements GameServiceInterface {
     building.addOwner(player);
 
     LogUtils.print(`Player ${player.getName()} bought the building ${building.getName()}.`);
+  }
+
+  private playerCanReceiveBonus(player: PlayerInterface, dice: number): boolean {
+    const playerPosition = this.boardService.getPlayerPosition(player);
+
+    return (playerPosition + dice >= this.buildingsAmount);
+  }
+
+  private addBonusToPLayer(player: PlayerInterface): void {
+    player.addMoney(this.roundBonus);
   }
 
   private printWinner() {

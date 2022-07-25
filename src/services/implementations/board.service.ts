@@ -1,4 +1,3 @@
-import { PlayerType } from "../../enums/playerType.enum";
 import { LogUtils } from "../../utils/log.utils";
 import { NumberUtils } from "../../utils/number.utils";
 import { BoardInterface } from "../board.interface";
@@ -62,7 +61,7 @@ export class BoardServices implements BoardInterface {
     return this.buildings[playerPosition];
   }
 
-  private getPlayerPosition(player: PlayerInterface): number {
+  public getPlayerPosition(player: PlayerInterface): number {
     const pos = this.playerPosition.get(player.getName());
 
     if (pos == undefined) throw new Error(`Player ${player.getName()} has not a position.`);
