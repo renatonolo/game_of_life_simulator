@@ -117,6 +117,7 @@ export class GameService implements GameServiceInterface {
 
   private addBonusToPLayer(player: PlayerInterface): void {
     player.addMoney(this.roundBonus);
+    LogUtils.print(`Player ${player.getName()} wons $ ${this.roundBonus},00 as round bonus.`);
   }
 
   private printWinner() {
